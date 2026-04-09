@@ -32,18 +32,16 @@ Created: 2026-01-25
 
 import asyncio
 import json
-from typing import Optional, Sequence
+from typing import Sequence
 
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import (
     Tool,
     TextContent,
-    CallToolResult,
 )
 
 from .client import client, APIError
-from .config import config
 
 
 # Create MCP server

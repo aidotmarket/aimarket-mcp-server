@@ -7,8 +7,7 @@ Handles authentication, error handling, and response parsing.
 """
 
 import httpx
-from typing import Optional, List, Dict, Any
-from pydantic import BaseModel
+from typing import Optional
 
 from .config import config
 
