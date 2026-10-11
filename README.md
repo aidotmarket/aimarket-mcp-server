@@ -1,4 +1,19 @@
-# ai.market MCP Server
+# ai.market MCP Server — legacy stdio client
+
+## Current compatibility
+
+For the current hosted customer connector, use `https://connect.ai.market` and the ai.market connector setup instructions. This repository is the older stdio client; the installation, examples and tool descriptions below record that implementation and are not a verified current purchase or delivery workflow.
+
+Source comparison on 2026-10-11 (client `d3bab634`, backend `d5307fcc`) confirms:
+
+- The client sends `X-API-Key`, but does not supply the OAuth Bearer header required by current purchase and wallet-write routes. A successful connection check with zero balance or empty orders does not establish access to the customer's wallet or order history.
+- `get_order_data` calls `/agent/orders/{id}/data`, which is absent from the current Agent router. Current purchased delivery uses seller-controlled infrastructure; this client is not evidence of a working download route.
+- `AIMARKET_SANDBOX` adds a request header. The old mock-data, fake-balance and no-charge statements below are not end-to-end safety guarantees; do not use a paid action to diagnose compatibility.
+
+The existing operator reference is [Legacy MCP client runbook](https://github.com/aidotmarket/runbooks/blob/main/aimarket-mcp-server.md) (authorized repository access required). This notice does not retire the package, verify registry availability, or claim a live customer journey.
+
+## Historical implementation and setup
+
 
 MCP (Model Context Protocol) server for the [ai.market](https://ai.market) data marketplace. Enables LLM clients like Claude Desktop, Cursor, and Cline to search, evaluate, and purchase datasets.
 
@@ -23,7 +38,7 @@ pip install aimarket-mcp-server
 ### Option 2: Install from source
 
 ```bash
-git clone https://github.com/maxrobbins/aimarket-mcp-server.git
+git clone https://github.com/aidotmarket/aimarket-mcp-server.git
 cd aimarket-mcp-server
 pip install -e .
 ```
@@ -150,7 +165,7 @@ Once configured, you can use natural language with Claude:
 
 ```bash
 # Clone the repository
-git clone https://github.com/maxrobbins/aimarket-mcp-server.git
+git clone https://github.com/aidotmarket/aimarket-mcp-server.git
 cd aimarket-mcp-server
 
 # Create virtual environment
@@ -171,5 +186,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## Support
 
 - Documentation: [docs.ai.market](https://docs.ai.market)
-- Issues: [GitHub Issues](https://github.com/maxrobbins/aimarket-mcp-server/issues)
+- Issues: [GitHub Issues](https://github.com/aidotmarket/aimarket-mcp-server/issues)
 - Email: support@ai.market
